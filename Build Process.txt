@@ -1,0 +1,106 @@
+##################################
+MSBuild
+##################################
+
+Source: https://www.youtube.com/watch?v=T-EcEm3E5Bs
+https://www.youtube.com/watch?v=BhSTU4rJXF0
+
+Most of people think, build process is actually combining applications, actually its not true. Combining applications is one step of build process
+
+
+There are a variety of build tools available for a variety of programming languages. Some of the most popular build tools include Ant for Java and MSBuild for .NET. Using a scripting tool designed specifically for building software, instead of a custom set of shell or batch scripts, is the most effective manner for developing a consistent, repeatable build solution.
+
+So why do we need a build process to start with. Well for starters, for a Continuous Integration server, the build process should be easy to work with and should be seamless to implement.
+
+Build process is the process of combining applications, Creating folders move compiled files into specific folders, starting zip or compiling files
+start removing data from specific files. start putting on another machine.
+
+1. what parameters you will use throughout the build? properties similar to variable 
+2. what the build will do throughout the build process? tasks
+3. How to organise my build process steps in desirable workflow manner and how to start from specific point? target conditions
+4. what you will build? (items)
+
+<?xml version="1.0" encoding="utf-8">
+<project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<PropertyGroup>
+		<Radwan>dddddd</Radwan>
+		<son>seif</son>
+        </PorpertyGroup>
+        <Target Name= "FirstTarget">
+		<Message Text="Hello World of MSBuild $(Radwan)"> -- Task
+        </Target>
+</project>
+
+
+Source:https://www.youtube.com/watch?v=V8bmw5zBZZI
+
+what is MSBuild?
+
+MSBuild is a scrpting language with xml syntax, Located in your project files (vcproj, csproj etc), useful for build automations 
+
+Source: https://www.tutorialspoint.com/continuous_integration/continuous_integration_building_a_solution.htm
+
+<?xml version = "1.0" encoding = "utf-8"?>
+<project xmlns = "http://schemas.microsoft.com/developer/msbuild/2003">
+   <Target Name = "Build">
+      <Message Text = "Building Project" />
+      <MSBuild Projects = "project.csproj" Targets = "Build/>"
+   </Target>
+</project>
+The following aspects need to be noted about the above code -
+
+A target is specified with a name of the Build. Wherein, a target is a collection of logical steps which need to be performed in a build process. You can have multiple targets and have dependencies between targets.
+
+In our target, we keep an option message which will be shown when the build process starts.
+
+The MSBuild task is used to specify which .Net project needs to be built.
+
+MSBuild Task Reference: https://msdn.microsoft.com/en-us/library/7z253716.aspx
+
+Items are basically what you want to build eg:
+
+--Include files
+<ItemGroup>
+	<MyItem Include="Program.cs" />
+</ItemGroup>
+<ItemGroup>
+	<Compile Include="Program.cs" />
+</ItemGroup>
+<ItemGroup>
+	<Compile Include="Program1.cs;Program2.cs" />
+</ItemGroup>
+
+--Remove files
+<ItemGroup>
+	<MyItem Remove="Program.cs" />
+</ItemGroup>
+
+To edit the csproj file, unload the project and edit then edit csproj file 
+
+Open Source community : MSBuild Extension Pack, Tigris.org
+
+You or one of your colleagues just finished writing some code and pushed the changes to the team's repository. But wait; what if the new code broke the build? What if it causes a compilation error? Or broke some tests in the test suite? Or what if the code didn't achieve the minimum value expected for some code quality metric?
+
+One unreliable way to avoid these possible issues is to hope all members of the team are diligent enough to make sure these kinds of mistakes don't happen. But if they do happen you want to learn about them as soon as possible. The best way to do this is to have the build verified whenever any new code is pushed into the repository, which is what Continuous Integration can do for you.
+
+There are a variety of tools available for Continuous Integration. One of the most popular is a Java-based tool called Jenkins. Jenkins allows you to create build jobs via a web interface which consists of a series of build steps. You could configure Jenkins to look for all the things mentioned in the scenario above. You could even take it further and use Jenkins to deploy your application automatically or with a single click.
+
+Related Vendor Content
+
+Designing Fast Data Application Architectures - Free eBook (By O'Reilly)
+Node.js Guide for Advanced Users – Download NowBuilding Scalable Web Applications with Azure Database for MySQLThe Value of Measuring End-User Experience from a Global Point of PresenceMicroservices and Containers 101 – Download the eBook
+Related Sponsor
+
+ 
+ 
+
+ 
+
+ 
+
+Mesosphere DC/OS is a hybrid cloud platform that enables container and data orchestration with automation, stability and ease.
+
+Developed by an ex-Sun employee, Jenkins clearly shows its Java-based roots. However, it isn't just useful for Java-based projects. Jenkins can handle your Continuous Integration needs for your PHP, Ruby on Rails, or .NET projects. For .NET based projects, you're going to need to be familiar with one more tool to make use of Jenkins; MSBuild.
+
+Visual Studio uses MSBuild to build your .NET projects. All MSBuild requires is a build script and a target within the build script to execute. Your *.csproj and *.vbproj files are MSBuild scripts.
+
