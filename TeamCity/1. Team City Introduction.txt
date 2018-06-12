@@ -1,0 +1,41 @@
+########################################
+Team City Introduction
+########################################
+
+Source: https://www.youtube.com/watch?v=d8ZFeAdLyP4&index=2&list=PLcsFTomp5i7H_8uC25uiMiRd01_OjYN-O
+
+Landscape:
+
+Source control           Continous Integration           Artifact Repository                Continous Deployment
+GIT			 Team City                       Nuget                              Octopus Deploy
+TCS                      Visual Studio                   Team City, Artifactory             Windows server
+
+Team City:
+
+Team city provides support for whole .net chain which includes, MSBuild, MSTest, Visual Studio, TC Plugins understand
+.net tools very well. TC is java based product.and is used for build configurations and its very straight forward
+
+Setup:
+
+
+Download the installer, run the installer and select the default path. For components to install select Build Agent and Server
+
+Build Agent is the agent which carrries out build task
+Server is the central system which orchestrates build task to multiple agents, server is where managment console resides, install the 
+windows service associated with it.
+
+Next we need to select where the data directory needs to be installed, this is the repo where all user data is stored. Its east to migrate 
+by copying the data directory to new server and point team city to the data directory path. even if you are upgrading team city we can
+point new install to data directory.
+
+Team city bundles jre so no need to install jre on its own on windows. It also installs dotnet-tools.zip which are plugins for .net tools integration
+example msbuild integration, mstest, visual studio
+
+Next step is configure build agent properties, you may need to change the serverurl. If the build server and agent are different server then port 9090 needs to be opened
+Use appropriate user account.
+
+Next proceed to web based portion where we need to select the database to store the build configuration. TC internal db is hypersonic 
+
+After setting up database, create admin user account, move next to set profile for user. 
+
+Check in service whether TC is running, check netstats to see build server on 8080 and build agent on 9090
